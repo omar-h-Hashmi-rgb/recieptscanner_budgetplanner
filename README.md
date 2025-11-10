@@ -1,12 +1,13 @@
 # ReceiptWise
 
-**ReceiptWise** is a comprehensive **full-stack personal finance management application** designed to revolutionize how you track, manage, and analyze your financial life. Built with modern technologies including **React (frontend), Node.js/Express (backend), MongoDB (database)**, and enhanced with **Google Gemini AI for intelligent receipt scanning**, ReceiptWise transforms financial management into an intuitive, data-driven experience.
+**ReceiptWise** is a comprehensive **full-stack personal finance management application** designed to revolutionize how you track, manage, and analyze your financial life. Built with modern technologies including **React (frontend), Node.js/Express (backend), MongoDB (database)**, and enhanced with **Google Gemini AI for intelligent receipt scanning** and **GROQ AI for advanced language processing**, ReceiptWise transforms financial management into an intuitive, data-driven experience.
 
 ## 🚀 Core Features
 
 ### 💳 **Smart Financial Tracking**
 * **Comprehensive Transaction Management** – Seamlessly record income and expenses with intelligent categorization
 * **Intelligent Receipt Processing** – Upload receipts and automatically extract expense details using **Google Gemini OCR technology**
+* **AI-Powered Analysis** – Enhanced financial insights with **GROQ AI** natural language processing
 * **Advanced Analytics Dashboard** – Visualize your financial patterns with interactive charts and insights
 
 ### 📊 **Powerful Analytics & Insights**
@@ -49,6 +50,7 @@
 * **JWT Authentication** for secure user sessions
 * **Multer** for efficient file upload handling
 * **Google Gemini AI SDK** for advanced OCR capabilities
+* **GROQ AI API** for enhanced natural language processing
 * **RESTful API** design with comprehensive error handling
 
 ### **Development & Deployment**
@@ -111,6 +113,7 @@ receiptwise/
 * **npm** or **yarn** package manager
 * **MongoDB Atlas** account (or local MongoDB installation)
 * **Google Gemini AI API** key
+* **GROQ AI API** key
 
 ### 1. Repository Setup
 
@@ -145,6 +148,7 @@ JWT_SECRET=your-super-secure-jwt-secret-key-here
 
 # AI Integration
 GEMINI_API_KEY=your-google-gemini-api-key
+GROQ_API_KEY=your-groq-ai-api-key
 
 # Health Check (for deployment)
 KEEP_ALIVE_URL=http://localhost:5000
@@ -251,6 +255,7 @@ DELETE /api/recurring/:id  # Delete recurring transaction
    MONGO_URI=mongodb+srv://...
    JWT_SECRET=production-secret
    GEMINI_API_KEY=your-api-key
+   GROQ_API_KEY=your-groq-api-key
    KEEP_ALIVE_URL=https://your-app.onrender.com
    ```
 
