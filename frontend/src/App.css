@@ -1,0 +1,81 @@
+/* Modern ReceiptWise App Styles */
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* Loading spinner */
+.spinner {
+  @apply animate-spin rounded-full h-8 w-8 border-b-2 border-teal-500;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #2dd4bf, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark .gradient-text {
+  background: linear-gradient(135deg, #14b8a6, #2563eb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Status indicators */
+.status-safe {
+  @apply bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-200 border-green-200 dark:border-green-700;
+}
+
+.status-warning {
+  @apply bg-yellow-100 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-200 border-yellow-200 dark:border-yellow-700;
+}
+
+.status-danger {
+  @apply bg-red-100 dark:bg-red-900/20 text-red-800 dark:text-red-200 border-red-200 dark:border-red-700;
+}
+
+.status-info {
+  @apply bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-200 border-blue-200 dark:border-blue-700;
+}
+
+/* Progress bars */
+.progress-bar {
+  @apply w-full bg-slate-200 dark:bg-slate-700 rounded-full h-3 overflow-hidden;
+}
+
+.progress-fill {
+  @apply h-full bg-gradient-to-r from-teal-400 to-blue-500 dark:from-teal-500 dark:to-blue-600 transition-all duration-500 ease-out rounded-full;
+}
+
+/* Hover effects */
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 10px 25px rgba(45, 212, 191, 0.2);
+}
+
+.dark .hover-glow:hover {
+  box-shadow: 0 10px 25px rgba(20, 184, 166, 0.2);
+}
