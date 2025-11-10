@@ -182,13 +182,6 @@ npm run dev
 
 ## 📚 Comprehensive API Documentation
 
-Our API is fully documented using **OpenAPI 3.0** specification for complete transparency and ease of integration.
-
-**Access Documentation:**
-* **File Location**: [`docs/openapi.yaml`](./docs/openapi.yaml)
-* **Interactive Editor**: [Swagger Editor](https://editor.swagger.io/)
-* **Import Options**: Postman, Insomnia, or any OpenAPI-compatible tool
-
 ### 🔑 Core API Endpoints
 
 #### **Authentication & User Management**
