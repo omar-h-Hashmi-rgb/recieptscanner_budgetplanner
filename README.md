@@ -270,27 +270,3 @@ DELETE /api/recurring/:id  # Delete recurring transaction
    /*    /index.html   200
    ```
 
-## 🤝 Contributing
-
-We welcome contributions! Here's how you can help improve ReceiptWise:
-
-1. **Fork** the repository
-2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
-3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
-4. **Push** to the branch (`git push origin feature/amazing-feature`)
-5. **Open** a Pull Request
-
-## 📄 License
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-
-## 🆘 Support & Contact
-
-* **Issues**: [GitHub Issues](https://github.com/your-username/receiptwise/issues)
-* **Discussions**: [GitHub Discussions](https://github.com/your-username/receiptwise/discussions)
-* **Email**: support@receiptwise.com
-
----
-
-**Built with ❤️ by the ReceiptWise Team**
-
