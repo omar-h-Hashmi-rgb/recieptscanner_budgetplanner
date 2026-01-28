@@ -20,14 +20,19 @@ const app = express();
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://receiptwise.netlify.app",
+  "https://receiptwise.netlify.app", // Keep legacy if needed, or remove
+  process.env.FRONTEND_URL, // Allow Vercel deployment
 ];
 
 app.use(cors({
   origin: function(origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
       callback(null, true);
     } else {
+      console.log('Blocked by CORS:', origin);
       callback(new Error("Not allowed by CORS"));
     }
   },
