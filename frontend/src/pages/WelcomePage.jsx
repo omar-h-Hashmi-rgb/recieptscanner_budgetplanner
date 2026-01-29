@@ -1,113 +1,283 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
-import ThemeToggle from '../components/ThemeToggle';
-
-const ChartIcon = () => <svg className="h-12 w-12 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>;
-
-const ReceiptIcon = () => <svg className="h-12 w-12 text-secondary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>;
-
-const CategoryIcon = () => <svg className="h-12 w-12 text-accent-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A2 2 0 013 8v5z" /></svg>;
-
-const FeatureCard = ({ icon, title, children }) => {
-  return (
-    <div className="relative group cursor-pointer">
-      {/* Glow effect on hover */}
-      <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl bg-gradient-to-r from-sky-400/40 via-purple-400/40 to-pink-400/40 transition-opacity duration-500" />
-
-      {/* Actual Card */}
-      <div className="card-modern relative p-8 transition-all duration-300 transform group-hover:-translate-y-2">
-        {/* Icon */}
-        <div className="flex items-center justify-center w-16 h-16 rounded-xl bg-primary-100 dark:bg-primary-900 mb-6 transition-colors duration-300 group-hover:bg-primary-200 dark:group-hover:bg-primary-800">
-          <span className="text-primary-600 dark:text-primary-400 text-3xl">
-            {icon}
-          </span>
-        </div>
-
-        {/* Title */}
-        <h4 className="text-xl font-semibold text-text-light-primary dark:text-text-dark-primary mb-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-300">
-          {title}
-        </h4>
-
-        {/* Description */}
-        <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-          {children}
-        </p>
-      </div>
-    </div>
-  );
-};
+import { FluidGradient } from '../components/ui/fluid-gradient';
+import { NeonGradientCard } from '../components/ui/neon-gradient-card';
+import { Receipt, TrendingUp, Target, DollarSign, PieChart, Zap } from 'lucide-react';
 
 export default function WelcomePage() {
   const { user } = useAuth();
-  const { logout } = useAuth();
+  const navigate = useNavigate();
 
   return (
-    <div className="bg-gray-50 dark:bg-gray-900 min-h-screen font-montserrat text-gray-800 dark:text-gray-200">
-      {/* Header */}
-      <header className="py-4 px-8 flex justify-between items-center bg-white dark:bg-gray-800 shadow-md">
-        <Link to="/" className="text-2xl font-bold gradient-text">
-          ReceiptWise
-        </Link>
-        <div className="flex items-center gap-4">
-          <ThemeToggle />
-          {user ? (
-            <>
-              <Link to="/dashboard" className="link-primary font-semibold">Dashboard</Link>
-              <button onClick={logout} className="btn btn-outline">Logout</button>
-            </>
-          ) : (
-            <>
-              <Link to="/login" className="link-primary font-semibold">Login</Link>
-              <Link to="/register" className="btn btn-primary">Sign Up</Link>
-            </>
-          )}
-        </div>
-      </header>
+    <div className="relative min-h-screen bg-blue-950">
+      {/* Fluid Gradient Background - Fixed Position */}
+      <div className="fixed inset-0 z-0">
+        <FluidGradient />
+      </div>
 
-      {/* Hero Section */}
-      <main className="text-center py-20 px-4">
-        <h2 className="text-5xl font-bold text-gray-900 dark:text-white">Master Your Financial Journey</h2>
-        <p className="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Empower your financial future with intelligent expense tracking, automated receipt processing, and comprehensive analytics designed to transform how you manage money.</p>
-        {user ? (
-          <Link to="/dashboard" className="btn btn-primary mt-8 inline-block text-lg px-8 py-3">Go to Dashboard</Link>
-        ) : (
-          <Link to="/register" className="btn btn-primary mt-8 inline-block text-lg px-8 py-3">Get Started for Free</Link>
-        )}
-      </main>
-
-      {/* Features Section */}
-      <section className="py-20 bg-gray-100 dark:bg-gray-800/50">
-        <div className="max-w-7xl mx-auto px-4">
-          {/* Heading */}
-          <h3 className="text-center text-3xl font-bold text-gray-900 dark:text-white mb-16">
-            Comprehensive Financial Management Tools
-          </h3>
-
-          {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <FeatureCard icon={<ChartIcon />} title="Advanced Financial Analytics">
-              Gain deep insights into your spending patterns with comprehensive charts and visualizations. 
-              Make data-driven financial decisions with confidence and clarity.
-            </FeatureCard>
-
-            <FeatureCard icon={<ReceiptIcon />} title="AI-Powered Receipt Processing">
-              Experience seamless expense tracking with our intelligent OCR technology. 
-              Simply capture your receipts and watch as details are automatically extracted and categorized.
-            </FeatureCard>
-
-            <FeatureCard icon={<CategoryIcon />} title="Intelligent Expense Organization">
-              Streamline your financial tracking with smart categorization systems. 
-              Customize categories to match your lifestyle and monitor spending across all areas of your life.
-            </FeatureCard>
+      {/* Content Overlay */}
+      <div className="relative z-10">
+        {/* Header */}
+        <header className="py-6 px-8 flex justify-between items-center">
+          <Link to="/" className="text-2xl font-bold text-white">
+            Receipt<span className="text-blue-400">Wise</span>
+          </Link>
+          <div className="flex items-center gap-4">
+            <nav className="hidden md:flex gap-6">
+              <button
+                onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
+                className="text-white/80 hover:text-white transition-colors"
+              >
+                Features
+              </button>
+              <button
+                onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+                className="text-white/80 hover:text-white transition-colors"
+              >
+                About
+              </button>
+            </nav>
+            {user ? (
+              <button
+                onClick={() => navigate('/dashboard')}
+                className="px-6 py-2.5 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-medium transition-colors"
+              >
+                Dashboard
+              </button>
+            ) : (
+              <>
+                <button
+                  onClick={() => navigate('/login')}
+                  className="text-white/80 hover:text-white transition-colors"
+                >
+                  Login
+                </button>
+                <button
+                  onClick={() => navigate('/register')}
+                  className="px-6 py-2.5 rounded-full bg-blue-500 hover:bg-blue-600 text-white font-medium transition-colors"
+                >
+                  Sign Up
+                </button>
+              </>
+            )}
           </div>
-        </div>
-      </section>
+        </header>
 
-      {/* Footer */}
-      <footer className="py-8 text-center text-gray-500 dark:text-gray-400">
-        <p>&copy; {new Date().getFullYear()} ReceiptWise. All Rights Reserved.</p>
-      </footer>
+        {/* Hero Section */}
+        <section className="min-h-screen flex flex-col items-center justify-center px-4 text-center py-20">
+          <div className="max-w-5xl mx-auto space-y-10">
+            <h1 className="text-6xl md:text-8xl font-bold text-white leading-tight">
+              Master Your{' '}
+              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                Financial Journey
+              </span>
+            </h1>
+            <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+              Empower your financial future with intelligent expense tracking, automated receipt processing, 
+              and comprehensive analytics designed to transform how you manage money.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-6 pt-8">
+              <button
+                onClick={() => navigate(user ? '/dashboard' : '/register')}
+                className="px-10 py-5 rounded-full bg-blue-500 hover:bg-blue-600 text-white font-semibold text-xl transition-all hover:scale-105 shadow-lg shadow-blue-500/50"
+              >
+                {user ? 'Go to Dashboard' : 'Get Started for Free'}
+              </button>
+              <button
+                onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
+                className="px-10 py-5 rounded-full border-2 border-white/40 hover:border-white/60 hover:bg-white/10 text-white font-semibold text-xl transition-all hover:scale-105"
+              >
+                Learn More
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* Features Section with Neon Cards */}
+        <section id="features" className="py-20 px-4">
+          <div className="max-w-7xl mx-auto">
+            <h3 className="text-center text-4xl font-bold text-white mb-4">
+              Comprehensive Financial Management Tools
+            </h3>
+            <p className="text-center text-white/70 mb-16 max-w-2xl mx-auto">
+              Everything you need to take control of your finances in one powerful platform
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {/* Card 1 */}
+              <NeonGradientCard
+                className="w-full"
+                borderSize={3}
+                borderRadius={16}
+                neonColors={{
+                  firstColor: "#0066ff",
+                  secondColor: "#00d4ff",
+                }}
+              >
+                <div className="flex flex-col items-center text-center h-full">
+                  <div className="mb-4 p-4 bg-blue-100 dark:bg-blue-900/20 rounded-full">
+                    <TrendingUp size={32} className="text-blue-600" />
+                  </div>
+                  <h4 className="text-xl font-bold mb-3 bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+                    Advanced Financial Analytics
+                  </h4>
+                  <p className="text-gray-700 dark:text-gray-300 text-sm">
+                    Gain deep insights into your spending patterns with comprehensive charts and visualizations. Make data-driven financial decisions with confidence.
+                  </p>
+                </div>
+              </NeonGradientCard>
+
+              {/* Card 2 */}
+              <NeonGradientCard
+                className="w-full"
+                borderSize={3}
+                borderRadius={16}
+                neonColors={{
+                  firstColor: "#0066ff",
+                  secondColor: "#00d4ff",
+                }}
+              >
+                <div className="flex flex-col items-center text-center h-full">
+                  <div className="mb-4 p-4 bg-blue-100 dark:bg-blue-900/20 rounded-full">
+                    <Receipt size={32} className="text-blue-600" />
+                  </div>
+                  <h4 className="text-xl font-bold mb-3 bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+                    AI-Powered Receipt Processing
+                  </h4>
+                  <p className="text-gray-700 dark:text-gray-300 text-sm">
+                    Experience seamless expense tracking with intelligent OCR technology. Simply capture receipts and watch details auto-extract.
+                  </p>
+                </div>
+              </NeonGradientCard>
+
+              {/* Card 3 */}
+              <NeonGradientCard
+                className="w-full"
+                borderSize={3}
+                borderRadius={16}
+                neonColors={{
+                  firstColor: "#0066ff",
+                  secondColor: "#00d4ff",
+                }}
+              >
+                <div className="flex flex-col items-center text-center h-full">
+                  <div className="mb-4 p-4 bg-blue-100 dark:bg-blue-900/20 rounded-full">
+                    <PieChart size={32} className="text-blue-600" />
+                  </div>
+                  <h4 className="text-xl font-bold mb-3 bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+                    Smart Categorization
+                  </h4>
+                  <p className="text-gray-700 dark:text-gray-300 text-sm">
+                    Streamline your financial tracking with intelligent categorization systems. Customize categories to match your lifestyle.
+                  </p>
+                </div>
+              </NeonGradientCard>
+
+              {/* Card 4 */}
+              <NeonGradientCard
+                className="w-full"
+                borderSize={3}
+                borderRadius={16}
+                neonColors={{
+                  firstColor: "#0066ff",
+                  secondColor: "#00d4ff",
+                }}
+              >
+                <div className="flex flex-col items-center text-center h-full">
+                  <div className="mb-4 p-4 bg-blue-100 dark:bg-blue-900/20 rounded-full">
+                    <Target size={32} className="text-blue-600" />
+                  </div>
+                  <h4 className="text-xl font-bold mb-3 bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+                    Goal Tracking
+                  </h4>
+                  <p className="text-gray-700 dark:text-gray-300 text-sm">
+                    Set and monitor your financial objectives with precision. Stay motivated with visual progress tracking.
+                  </p>
+                </div>
+              </NeonGradientCard>
+
+              {/* Card 5 */}
+              <NeonGradientCard
+                className="w-full"
+                borderSize={3}
+                borderRadius={16}
+                neonColors={{
+                  firstColor: "#0066ff",
+                  secondColor: "#00d4ff",
+                }}
+              >
+                <div className="flex flex-col items-center text-center h-full">
+                  <div className="mb-4 p-4 bg-blue-100 dark:bg-blue-900/20 rounded-full">
+                    <DollarSign size={32} className="text-blue-600" />
+                  </div>
+                  <h4 className="text-xl font-bold mb-3 bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+                    Budget Management
+                  </h4>
+                  <p className="text-gray-700 dark:text-gray-300 text-sm">
+                    Plan and monitor budgets across different categories. Get alerts when approaching spending limits.
+                  </p>
+                </div>
+              </NeonGradientCard>
+
+              {/* Card 6 */}
+              <NeonGradientCard
+                className="w-full"
+                borderSize={3}
+                borderRadius={16}
+                neonColors={{
+                  firstColor: "#0066ff",
+                  secondColor: "#00d4ff",
+                }}
+              >
+                <div className="flex flex-col items-center text-center h-full">
+                  <div className="mb-4 p-4 bg-blue-100 dark:bg-blue-900/20 rounded-full">
+                    <Zap size={32} className="text-blue-600" />
+                  </div>
+                  <h4 className="text-xl font-bold mb-3 bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+                    Real-time Sync
+                  </h4>
+                  <p className="text-gray-700 dark:text-gray-300 text-sm">
+                    Access your financial data anywhere, anytime. Seamless synchronization across all your devices.
+                  </p>
+                </div>
+              </NeonGradientCard>
+            </div>
+          </div>
+        </section>
+
+        {/* About Section */}
+        <section id="about" className="py-20 px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h3 className="text-4xl font-bold text-white mb-6">
+              Why <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">ReceiptWise</span>?
+            </h3>
+            <p className="text-white/80 text-lg leading-relaxed mb-8">
+              We combine cutting-edge AI technology with intuitive design to provide a comprehensive financial management solution. 
+              Our platform helps you understand your spending, achieve your goals, and build a stronger financial future.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <div className="px-6 py-3 bg-white/10 backdrop-blur-sm border border-blue-500/30 rounded-full text-white">
+                <span className="font-semibold">AI-Powered</span>
+              </div>
+              <div className="px-6 py-3 bg-white/10 backdrop-blur-sm border border-blue-500/30 rounded-full text-white">
+                <span className="font-semibold">Secure</span>
+              </div>
+              <div className="px-6 py-3 bg-white/10 backdrop-blur-sm border border-blue-500/30 rounded-full text-white">
+                <span className="font-semibold">Multi-Currency</span>
+              </div>
+              <div className="px-6 py-3 bg-white/10 backdrop-blur-sm border border-blue-500/30 rounded-full text-white">
+                <span className="font-semibold">Real-time Analytics</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="py-8 text-center text-white/60 border-t border-white/10">
+          <p>&copy; {new Date().getFullYear()} ReceiptWise. All Rights Reserved.</p>
+        </footer>
+      </div>
     </div>
   );
 }

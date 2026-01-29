@@ -45,6 +45,12 @@ const Layout = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-1">
+              <NavLink to="/" className="relative px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 nav-link-inactive hover:bg-blue-500/10">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                Home
+              </NavLink>
               <NavLink to="/dashboard" className={getNavLinkClass}>
                 📊 Command Center
               </NavLink>
@@ -99,6 +105,12 @@ const Layout = () => {
           {isMobileMenuOpen && (
             <div className="lg:hidden py-4 border-t border-slate-200 dark:border-slate-700 fade-in">
               <div className="flex flex-col space-y-2">
+                <NavLink to="/" className="relative px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 nav-link-inactive" onClick={toggleMobileMenu}>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                  </svg>
+                  Home
+                </NavLink>
                 <NavLink to="/dashboard" className={getNavLinkClass} onClick={toggleMobileMenu}>
                   📊 Command Center
                 </NavLink>
